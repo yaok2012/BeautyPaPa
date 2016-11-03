@@ -26,8 +26,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * 作者：Rance on 2016/10/25 15:19
@@ -35,7 +36,7 @@ import butterknife.ButterKnife;
  */
 public class VideoListFragment extends BaseMvpViewPagerFragment<MainPresenter> implements MainView, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     EasyRecyclerView mRecyclerView;
     private int index = 0;
     private String[] ids = {"1", "13", "64", "16", "31", "19", "62", "63", "3", "59", "27", "5", "18", "6", "193"};
@@ -45,13 +46,15 @@ public class VideoListFragment extends BaseMvpViewPagerFragment<MainPresenter> i
     private int count = 10;
     private List<VideoEntity> videoEntities = new ArrayList<>();
 
+    private Unbinder unbinder;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.layout_only_list, container, false);
         }
-        ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -125,7 +128,7 @@ public class VideoListFragment extends BaseMvpViewPagerFragment<MainPresenter> i
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        unbinder.unbind();
     }
 
     @Override

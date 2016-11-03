@@ -10,10 +10,9 @@ import android.webkit.WebViewClient;
 
 import com.rance.beautypapa.R;
 import com.rance.beautypapa.base.BaseActivity;
-import com.rance.beautypapa.utils.LogUtil;
 import com.umeng.analytics.MobclickAgent;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -22,9 +21,9 @@ import butterknife.ButterKnife;
  */
 public class WebViewActivity extends BaseActivity {
 
-    @Bind(R.id.webView)
+    @BindView(R.id.webView)
     WebView webView;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
     private String urlPath;
 

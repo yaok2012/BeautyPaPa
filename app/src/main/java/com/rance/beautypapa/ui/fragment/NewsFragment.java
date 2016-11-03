@@ -25,8 +25,9 @@ import com.umeng.analytics.MobclickAgent;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * 作者：Rance on 2016/10/27 09:58
@@ -34,11 +35,11 @@ import butterknife.ButterKnife;
  */
 public class NewsFragment extends BaseMvpFragment<NewsPresenter> implements NewsView, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     EasyRecyclerView mRecyclerView;
-    @Bind(R.id.vp_top_stories)
+    @BindView(R.id.vp_top_stories)
     TopViewPager vpTopStories;
-    @Bind(R.id.tv_top_title)
+    @BindView(R.id.tv_top_title)
     TextView tvTopTitle;
     private View rootView;
 
@@ -47,13 +48,15 @@ public class NewsFragment extends BaseMvpFragment<NewsPresenter> implements News
     private NewsEntity newsInfo;
     private List<NewsEntity.StoriesBean> storiesBeen = new ArrayList<>();
 
+    private Unbinder unbinder;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_news, container, false);
         }
-        ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -113,7 +116,7 @@ public class NewsFragment extends BaseMvpFragment<NewsPresenter> implements News
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        unbinder.unbind();
     }
 
     @Override

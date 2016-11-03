@@ -2,17 +2,15 @@ package com.rance.beautypapa.adapter.holder;
 
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.rance.beautypapa.R;
-import com.rance.beautypapa.base.MyApplication;
 import com.rance.beautypapa.model.VideoEntity;
 import com.rance.beautypapa.widget.CircleImageView;
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -21,19 +19,19 @@ import butterknife.ButterKnife;
  */
 public class VideoViewHolder extends BaseViewHolder<VideoEntity> {
 
-    @Bind(R.id.item_video_cover)
+    @BindView(R.id.item_video_cover)
     ImageView itemVideoCover;
-    @Bind(R.id.item_video_header)
+    @BindView(R.id.item_video_header)
     CircleImageView itemVideoHeader;
-    @Bind(R.id.item_video_name)
+    @BindView(R.id.item_video_name)
     TextView itemVideoName;
-    @Bind(R.id.item_video_caption)
+    @BindView(R.id.item_video_caption)
     TextView itemVideoCaption;
-    @Bind(R.id.item_video_play_num)
+    @BindView(R.id.item_video_play_num)
     TextView itemVideoPlayNum;
-    @Bind(R.id.item_video_like_num)
+    @BindView(R.id.item_video_like_num)
     TextView itemVideoLikeNum;
-    @Bind(R.id.item_video_comment_num)
+    @BindView(R.id.item_video_comment_num)
     TextView itemVideoCommentNum;
 
     public VideoViewHolder(ViewGroup parent) {

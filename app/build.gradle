@@ -10,11 +10,61 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        resConfigs "zh"
+        manifestPlaceholders = [
+                PACKAGE_NAME : applicationId,
+                UMENG_APPKEY : "581adcdbe88bad5216001aac"
+        ]
+    }
+    //签名
+    signingConfigs {
+        release {
+            storeFile file("../doc/tjny.jks")
+            storePassword "tydic123"
+            keyAlias "tjny"
+            keyPassword "tydic123456"
+        }
     }
     buildTypes {
-        release {
+        def BOOLEAN = "boolean"
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [UMENG_CHANNEL:"debug"]
+            buildConfigField BOOLEAN, "LOGGER", "true";
+        }
+        release {
+            //混淆
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            //移除无用的resource文件
+            shrinkResources true
+            pseudoLocalesEnabled true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [UMENG_CHANNEL:"release"]
+            //不显示Log
+            buildConfigField BOOLEAN, "LOGGER", "false";
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                def sdf = new SimpleDateFormat("yyyyMMdd");
+//                def date = sdf.format(new Date())
+//                def fileName = "tjny_v${defaultConfig.versionName}_${date}.apk"
+                def fileName = "tjny_v${defaultConfig.versionName}.apk"
+//                fileName=fileName.replace("_","-");
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
         }
     }
     lintOptions{
@@ -28,13 +78,18 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:cardview-v7:24.2.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
+    //butterknife
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
+
+    //retrofit + okhttp3 + rxjava
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
+
     compile 'com.android.support:design:24.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.jude:easyrecyclerview:4.2.3'
@@ -52,3 +107,17 @@ dependencies {
     compile files('libs/ShareSDK-Wechat-Favorite-2.7.8.jar')
     compile files('libs/ShareSDK-Wechat-Moments-2.7.8.jar')
 }
+
+//lambda支持
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+    }
+}
+repositories {
+    mavenCentral()
+}
+apply plugin: 'me.tatarka.retrolambda'

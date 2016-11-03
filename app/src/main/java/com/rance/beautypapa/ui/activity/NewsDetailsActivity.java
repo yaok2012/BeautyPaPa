@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -19,7 +18,7 @@ import com.rance.beautypapa.view.NewsDetailsView;
 import com.squareup.picasso.Picasso;
 import com.umeng.analytics.MobclickAgent;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -28,16 +27,16 @@ import butterknife.ButterKnife;
  */
 public class NewsDetailsActivity extends BaseMvpActivity<NewsDetailsPresenter> implements NewsDetailsView {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
     private String id;
-    @Bind(R.id.web_view)
+    @BindView(R.id.web_view)
     WebView webView;
-    @Bind(R.id.iv_web_img)
+    @BindView(R.id.iv_web_img)
     ImageView webImg;
-    @Bind(R.id.tv_img_title)
+    @BindView(R.id.tv_img_title)
     TextView imgTitle;
-    @Bind(R.id.tv_img_source)
+    @BindView(R.id.tv_img_source)
     TextView imgSource;
 
     @Override

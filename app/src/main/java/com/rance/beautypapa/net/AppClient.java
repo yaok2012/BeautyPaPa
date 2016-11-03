@@ -61,6 +61,14 @@ public class AppClient {
                 //设置 Debug Log 模式
                 builder.addInterceptor(loggingInterceptor);
             }
+            builder.addNetworkInterceptor(new Interceptor() {
+                @Override
+                public Response intercept(Chain chain) throws IOException {
+                    //// TODO: 16/10/20 进行重定向等操作
+                    return chain.proceed(chain.request());
+                }
+            })//网络拦截器,进行重定向等操作
+             .connectTimeout(15, TimeUnit.SECONDS);//设置连接超时
             //cache url
             File httpCacheDirectory = new File(MyApplication.mContext.getExternalCacheDir(), "responses");
             int cacheSize = 10 * 1024 * 1024; // 10 MiB

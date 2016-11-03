@@ -16,7 +16,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:background="@mipmap/logo" />
+        android:background="@mipmap/ic_launcher" />
 
     <TextView
         android:layout_width="match_parent"

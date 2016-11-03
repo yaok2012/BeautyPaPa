@@ -11,17 +11,17 @@ import android.widget.TextView;
 import com.rance.beautypapa.R;
 import com.umeng.analytics.MobclickAgent;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AboutActivity extends AppCompatActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.tv_github)
+    @BindView(R.id.tv_github)
     TextView tvGithub;
-    @Bind(R.id.tv_jianshu)
+    @BindView(R.id.tv_jianshu)
     TextView tvJianshu;
 
     @Override
