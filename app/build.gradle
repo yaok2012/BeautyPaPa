@@ -95,17 +95,12 @@ dependencies {
     compile 'com.jude:easyrecyclerview:4.2.3'
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.umeng.analytics:analytics:latest.integration'
+    //解析html
+    compile 'org.jsoup:jsoup:1.10.1'
+    //回收
+    compile 'com.trello:rxlifecycle:1.0'
+    compile 'com.trello:rxlifecycle-components:1.0'
 
-    compile files('libs/MobCommons-2016.1020.1028.jar')
-    compile files('libs/MobTools-2016.1020.1028.jar')
-    compile files('libs/ShareSDK-Core-2.7.8.jar')
-    compile files('libs/ShareSDK-QQ-2.7.8.jar')
-    compile files('libs/ShareSDK-QZone-2.7.8.jar')
-    compile files('libs/ShareSDK-SinaWeibo-2.7.8.jar')
-    compile files('libs/ShareSDK-Wechat-2.7.8.jar')
-    compile files('libs/ShareSDK-Wechat-Core-2.7.8.jar')
-    compile files('libs/ShareSDK-Wechat-Favorite-2.7.8.jar')
-    compile files('libs/ShareSDK-Wechat-Moments-2.7.8.jar')
 }
 
 //lambda支持

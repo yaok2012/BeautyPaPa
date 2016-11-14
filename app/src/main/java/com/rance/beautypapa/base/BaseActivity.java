@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +29,7 @@ import rx.subscriptions.CompositeSubscription;
  * 作者：Rance on 2016/10/25 15:19
  * 邮箱：rance935@163.com
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends RxActivity {
     public Activity mActivity;
     private CompositeSubscription mCompositeSubscription;
     private List<Call> calls;
